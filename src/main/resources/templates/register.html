@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Client Registration</h1>
+    <form th:action="@{/users/register}" method="post" th:object="${user}">
+        <label>Email: <input type="email" th:field="*{email}" required></label><br/>
+        <label>Password: <input type="password" th:field="*{password}" required></label><br/>
+        <label>Full Name: <input type="text" th:field="*{fullName}" required></label><br/>
+        <label>Emergency Contact: <input type="text" th:field="*{emergencyContact}"></label><br/>
+        <label>Goals: <textarea th:field="*{goals}"></textarea></label><br/>
+        <label>Medical Notes: <textarea th:field="*{medicalNotes}"></textarea></label><br/>
+        <button type="submit">Register</button>
+    </form>
+    <a href="/">Home</a>
+</body>
+</html>

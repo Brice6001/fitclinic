@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SOAP Record – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>New SOAP Note</h1>
+    <p>Appointment ID: <strong th:text="${appointmentId}"></strong></p>
+
+    <div class="card">
+        <form th:action="@{/records/create}" method="post">
+            <input type="hidden" name="appointmentId" th:value="${appointmentId}" />
+            <label>Subjective (client’s words):
+                <textarea name="subjective" required></textarea>
+            </label>
+            <label>Objective (measurements):
+                <textarea name="objective" required></textarea>
+            </label>
+            <label>Assessment:
+                <textarea name="assessment" required></textarea>
+            </label>
+            <label>Plan:
+                <textarea name="plan" required></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Save Record</button>
+            <a href="/appointments" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

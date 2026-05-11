@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Records – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Session Records</h1>
+    <table border="1">
+        <tr><th>ID</th><th>Appointment</th><th>Client</th><th>Subjective</th><th>Assessment</th><th>Actions</th></tr>
+        <tr th:each="r : ${records}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.appointment.id}"></td>
+            <td th:text="${r.appointment.client.fullName}"></td>
+            <td th:text="${r.subjective}"></td>
+            <td th:text="${r.assessment}"></td>
+            <td>
+                <a th:href="@{/records/{id}/edit(id=${r.id})}">Edit</a>
+                <a th:href="@{/records/{id}/delete(id=${r.id})}" 
+                   onclick="return confirm('Delete this record?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/">Home</a>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Client Login – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Client Portal</h1>
+    <div class="card">
+        <form th:action="@{/client/login}" method="post">
+            <label>Enter your email address:
+                <input type="email" name="email" required placeholder="jane@example.com" />
+            </label>
+            <button type="submit" class="btn btn-primary">Go to My Dashboard</button>
+        </form>
+    </div>
+    <a href="/" class="btn btn-secondary">Back to Home</a>
+</body>
+</html>

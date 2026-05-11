@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Users – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>All Users</h1>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/users/register" class="btn btn-primary">Register New Client</a></li>
+            <li><a href="/" class="btn btn-secondary">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="card">
+        <table>
+            <tr><th>Name</th><th>Email</th><th>Role</th><th>Actions</th></tr>
+            <tr th:each="u : ${users}">
+                <td th:text="${u.fullName}"></td>
+                <td th:text="${u.email}"></td>
+                <td th:text="${u.role}"></td>
+                <td>
+                    <a th:href="@{/users/{id}(id=${u.id})}" class="btn btn-sm btn-secondary">View</a>
+                    <a th:href="@{/users/{id}/edit(id=${u.id})}" class="btn btn-sm btn-primary">Edit</a>
+                    <a th:href="@{/users/{id}/delete(id=${u.id})}" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Delete this user?')">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

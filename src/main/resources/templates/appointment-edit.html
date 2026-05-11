@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Appointment</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Edit Appointment <span th:text="${appointment.id}"></span></h1>
+    <form th:action="@{/appointments/{id}/edit(id=${appointment.id})}" method="post">
+        <label>Client:
+            <select name="clientId" required>
+                <option th:each="c : ${clients}" th:value="${c.id}" th:text="${c.fullName}" 
+                        th:selected="${c.id == appointment.client.id}"></option>
+            </select>
+        </label><br/>
+        <label>Staff:
+            <select name="staffId" required>
+                <optgroup label="Trainers">
+                    <option th:each="t : ${trainers}" th:value="${t.id}" th:text="${t.fullName}"
+                            th:selected="${t.id == appointment.trainer.id}"></option>
+                </optgroup>
+                <optgroup label="Physiotherapists">
+                    <option th:each="p : ${physios}" th:value="${p.id}" th:text="${p.fullName}"
+                            th:selected="${p.id == appointment.trainer.id}"></option>
+                </optgroup>
+            </select>
+        </label><br/>
+        <label>Type:
+            <select name="type" required>
+                <option value="PERSONAL_TRAINING" th:selected="${appointment.type.name() == 'PERSONAL_TRAINING'}">Personal Training</option>
+                <option value="PHYSIO" th:selected="${appointment.type.name() == 'PHYSIO'}">Physiotherapy</option>
+                <option value="NUTRITION" th:selected="${appointment.type.name() == 'NUTRITION'}">Nutrition</option>
+            </select>
+        </label><br/>
+        <label>Start: <input type="datetime-local" name="start" th:value="${appointment.startTime}" required></label><br/>
+        <label>End: <input type="datetime-local" name="end" th:value="${appointment.endTime}" required></label><br/>
+        <button type="submit">Save</button>
+    </form>
+    <a href="/appointments">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Appointment – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Book an Appointment</h1>
+    <form th:action="@{/appointments/book}" method="post">
+        <label>Client:
+            <select name="clientId" required>
+                <option value="">-- Select client --</option>
+                <option th:each="c : ${clients}" th:value="${c.id}" th:text="${c.fullName}"></option>
+            </select>
+        </label><br/>
+
+        <label>Staff:
+            <select name="staffId" required>
+                <option value="">-- Select staff --</option>
+                <optgroup label="Trainers">
+                    <option th:each="t : ${trainers}" th:value="${t.id}" th:text="${t.fullName}"></option>
+                </optgroup>
+                <optgroup label="Physiotherapists">
+                    <option th:each="p : ${physios}" th:value="${p.id}" th:text="${p.fullName}"></option>
+                </optgroup>
+            </select>
+        </label><br/>
+
+        <label>Type:
+            <select name="type" required>
+                <option value="PERSONAL_TRAINING">Personal Training</option>
+                <option value="PHYSIO">Physiotherapy</option>
+                <option value="NUTRITION">Nutrition</option>
+            </select>
+        </label><br/>
+        <label>Start: <input type="datetime-local" name="start" required></label><br/>
+        <label>End: <input type="datetime-local" name="end" required></label><br/>
+        <button type="submit">Book</button>
+    </form>
+    <a href="/">Home</a>
+</body>
+</html>

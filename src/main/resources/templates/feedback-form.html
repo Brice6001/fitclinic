@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feedback – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Feedback for Appointment <span th:text="${feedback.appointment.id}"></span></h1>
+    <form th:action="@{/feedback/{id}(id=${feedback.id})}" method="post">
+        <label>Rating (1-5):
+            <select name="rating" required>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Poor</option>
+                <option value="1">1 - Terrible</option>
+            </select>
+        </label><br/>
+        <label>Comments: <textarea name="comments"></textarea></label><br/>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/">Home</a>
+</body>
+</html>

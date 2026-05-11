@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard - FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h2 { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Home</a>
+
+    <h2>Users</h2>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Goals</th></tr>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.fullName}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.role}"></td>
+            <td th:text="${u.goals}"></td>
+        </tr>
+    </table>
+
+    <h2>Appointments</h2>
+    <table>
+        <tr><th>ID</th><th>Client</th><th>Trainer/Physio</th><th>Type</th><th>Start</th><th>End</th><th>Status</th></tr>
+        <tr th:each="a : ${appointments}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.client.fullName}"></td>
+            <td th:text="${a.trainer.fullName}"></td>
+            <td th:text="${a.type}"></td>
+            <td th:text="${a.startTime}"></td>
+            <td th:text="${a.endTime}"></td>
+            <td th:text="${a.status}"></td>
+        </tr>
+    </table>
+
+    <h2>Session Records</h2>
+    <table>
+        <tr><th>ID</th><th>Appointment ID</th><th>Subjective</th><th>Objective</th><th>Assessment</th><th>Plan</th></tr>
+        <tr th:each="r : ${records}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.appointment.id}"></td>
+            <td th:text="${r.subjective}"></td>
+            <td th:text="${r.objective}"></td>
+            <td th:text="${r.assessment}"></td>
+            <td th:text="${r.plan}"></td>
+        </tr>
+    </table>
+
+    <h2>Feedback</h2>
+    <table>
+        <tr><th>ID</th><th>Appointment ID</th><th>Client</th><th>Rating</th><th>Comments</th><th>Submitted</th></tr>
+        <tr th:each="f : ${feedbacks}">
+            <td th:text="${f.id}"></td>
+            <td th:text="${f.appointment.id}"></td>
+            <td th:text="${f.client.fullName}"></td>
+            <td th:text="${f.rating}"></td>
+            <td th:text="${f.comments}"></td>
+            <td th:text="${f.submittedAt}"></td>
+        </tr>
+    </table>
+</body>
+</html>

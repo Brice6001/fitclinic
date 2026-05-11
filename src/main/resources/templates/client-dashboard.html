@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Dashboard – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Welcome, <span th:text="${client.fullName}"></span>!</h1>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/appointments/book" class="btn btn-primary">Book New Appointment</a></li>
+            <li><a href="/users/${client.id}" class="btn btn-secondary">My Profile</a></li>
+            <li><a href="/" class="btn btn-secondary">Home</a></li>
+        </ul>
+    </nav>
+
+    <h2>Your Appointments</h2>
+    <div class="card" th:if="${!appointments.isEmpty()}">
+        <table>
+            <tr>
+                <th>Date & Time</th>
+                <th>Staff</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="a : ${appointments}">
+                <td th:text="${a.startTime}"></td>
+                <td th:text="${a.trainer.fullName}"></td>
+                <td th:text="${a.type}"></td>
+                <td th:text="${a.status}"></td>
+                <td>
+                    <!-- View record if exists -->
+                    <a th:if="${a.sessionRecord != null}" 
+                       th:href="@{/records/{id}(id=${a.sessionRecord.id})}" 
+                       class="btn btn-sm btn-secondary">View Record</a>
+                    <!-- Submit feedback if not yet rated -->
+                    <a th:if="${a.feedback != null and a.feedback.rating == 0}" 
+                       th:href="@{/feedback/{id}(id=${a.feedback.id})}" 
+                       class="btn btn-sm btn-primary">Submit Feedback</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p th:if="${appointments.isEmpty()}">No appointments yet. <a href="/appointments/book">Book one now</a>.</p>
+</body>
+</html>

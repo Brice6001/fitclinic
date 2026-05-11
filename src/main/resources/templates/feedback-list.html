@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Feedback – FitClinic</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Feedback</h1>
+    <table border="1">
+        <tr><th>ID</th><th>Client</th><th>Rating</th><th>Comments</th><th>Action</th></tr>
+        <tr th:each="f : ${feedbacks}">
+            <td th:text="${f.id}"></td>
+            <td th:text="${f.client.fullName}"></td>
+            <td th:text="${f.rating}"></td>
+            <td th:text="${f.comments}"></td>
+            <td>
+                <a th:href="@{/feedback/{id}/delete(id=${f.id})}" 
+                   onclick="return confirm('Delete this feedback?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/">Home</a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Profile: <span th:text="${user.fullName}">Name</span></h1>
+    <p>Email: <span th:text="${user.email}"></span></p>
+    <p>Role: <span th:text="${user.role}"></span></p>
+    <form th:action="@{/users/{id}/profile(id=${user.id})}" method="post">
+        <label>Emergency Contact: <input type="text" name="emergencyContact" th:value="${user.emergencyContact}"/></label><br/>
+        <label>Goals: <textarea name="goals" th:text="${user.goals}"></textarea></label><br/>
+        <label>Medical Notes: <textarea name="medicalNotes" th:text="${user.medicalNotes}"></textarea></label><br/>
+        <button type="submit">Update</button>
+    </form>
+    <a href="/">Home</a>
+</body>
+</html>

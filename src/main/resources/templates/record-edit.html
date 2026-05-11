@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit SOAP Record</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1>Edit Record <span th:text="${record.id}"></span></h1>
+    <form th:action="@{/records/{id}/edit(id=${record.id})}" method="post">
+        <label>Subjective: <textarea name="subjective" th:text="${record.subjective}"></textarea></label><br/>
+        <label>Objective: <textarea name="objective" th:text="${record.objective}"></textarea></label><br/>
+        <label>Assessment: <textarea name="assessment" th:text="${record.assessment}"></textarea></label><br/>
+        <label>Plan: <textarea name="plan" th:text="${record.plan}"></textarea></label><br/>
+        <button type="submit">Save</button>
+    </form>
+    <a href="/records">Cancel</a>
+</body>
+</html>

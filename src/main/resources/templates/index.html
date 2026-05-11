@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FitClinic – Fitness & Clinic Hub</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body class="home">
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>FitClinic</h1>
+            <p>Your complete fitness & health management system</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="card-grid">
+
+            <!-- Client Portal Card -->
+            <div class="card">
+                <div class="card-icon">🧑‍🤝‍🧑</div>
+                <h2>Client Portal</h2>
+                <p>View your appointments, records and provide feedback.</p>
+                <div class="card-actions">
+                    <a href="/client/login" class="btn btn-primary">Enter Client Area</a>
+                </div>
+            </div>
+
+            <!-- Admin / Staff Card -->
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h2>Admin & Staff</h2>
+                <p>Manage users, appointments, records and feedback.</p>
+                <div class="card-actions">
+                    <a href="/users" class="btn btn-secondary">Users</a>
+                    <a href="/appointments" class="btn btn-secondary">Appointments</a>
+                    <a href="/records" class="btn btn-secondary">Records</a>
+                    <a href="/feedback" class="btn btn-secondary">Feedback</a>
+                    <a href="/admin" class="btn btn-secondary">Dashboard</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>FitClinic &copy; 2026 </p>
+    </footer>
+
+</body>
+</html>
